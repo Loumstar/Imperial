@@ -4,7 +4,7 @@ from math import pi
 
 print("--- Task A")
 def loop_phrase(n):
-    for x in range(n):
+    for _ in range(n):
         print("I need to comment my scripts. Comments are marked too!")
     
 def sum_x2(n):
@@ -45,6 +45,7 @@ class PlayDice:
         b = randint(1, 6)
         
         print("%s: %i, %s: %i" % (self.player_a, a, self.player_b, b))
+        
         if(a > b):
             print("%s wins %s" % (self.player_a, self.player_b))
             self.total_a += 1
@@ -53,7 +54,14 @@ class PlayDice:
             self.total_b += 1
 
     def report(self):
-        print("%s won %i games, while %s won %i games." % (self.player_a, self.total_a, self.player_b, self.total_b))
+        print(
+            "%s won %i games, while %s won %i games." % (
+                self.player_a, 
+                self.total_a, 
+                self.player_b, 
+                self.total_b
+            )
+        )
 
 def rock_paper_scissors():
     rps = ["r", "p", "s"]
@@ -80,14 +88,20 @@ print("--- Task C")
 
 def calculate_pi(n):
     """
-    The method is to choose random numbers between 0 and 1 in both the x and y plane, representing a square.
+    The method is to choose random numbers between 0 and 1 in both the x and y
+    plane, representing a square.
     
-    Each x and y coord is saved to the square list unless the line from origin to the point is smaller 
-    than the diameter of a circle diameter 1, it is saved to a separate list.
-    if(x**2 + y**2 > r**2) append to circle list
+    Each x and y coord is saved to the square list unless the line from origin
+    to the point is smaller than the diameter of a circle diameter 1, it is 
+    saved to a separate list. 
     
-    The random numbers land in or out of the circle depending on the ratio of the areas of the circle and square.
-    Therefore the ratio of data points in the circle and the square will approximate pi/4.
+    if(x**2 + y**2 < r**2) append to circle list
+    
+    The random numbers land in or out of the circle depending on the ratio of 
+    the areas of the circle and square.
+    
+    Therefore the ratio of data points in the circle and the square will 
+    approximate pi/4.
     """
     points_in_circle = 0
     x_points = {"square":[], "circle":[]}
@@ -109,9 +123,22 @@ def calculate_pi(n):
 
     pi_approximation = 4 * points_in_circle / (10**n)
 
-    print("Pi approximation: %f, Error: %f" % (pi_approximation, pi_approximation - pi))
+    print(
+        "Pi approximation: %f, Error: %f" % (
+            pi_approximation, 
+            pi_approximation - pi
+        )
+    )
 
-    plot.plot(x_points["circle"], y_points["circle"], 'rx', x_points["square"], y_points["square"], 'bx')
+    plot.plot(
+        x_points["circle"], 
+        y_points["circle"], 
+        'rx', 
+        x_points["square"], 
+        y_points["square"], 
+        'bx'
+    )
+    
     plot.ylabel("y")
     plot.xlabel("x")
 
