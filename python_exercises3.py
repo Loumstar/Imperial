@@ -15,7 +15,7 @@ def sum_x2(n):
 
 def sum_dice(n):
     sum = 0
-    for x in range(n):
+    for _ in range(n):
         sum += randint(1, 6)
     return sum
 
@@ -46,7 +46,9 @@ class PlayDice:
         
         print("%s: %i, %s: %i" % (self.player_a, a, self.player_b, b))
         
-        if(a > b):
+        if a == b:
+            print("Draw")
+        elif(a > b):
             print("%s wins %s" % (self.player_a, self.player_b))
             self.total_a += 1
         else:
@@ -80,6 +82,7 @@ game = PlayDice()
 
 game.play()
 game.play()
+
 game.report()
 
 rock_paper_scissors()
@@ -104,8 +107,8 @@ def calculate_pi(n):
     approximate pi/4.
     """
     points_in_circle = 0
-    x_points = {"square":[], "circle":[]}
-    y_points = {"square":[], "circle":[]}
+    square = {"x":[], "y":[]}
+    circle = {"x":[], "y":[]}
     i = 0
     while i < 10**n:
         x = random()-0.5
@@ -113,11 +116,11 @@ def calculate_pi(n):
 
         if x**2 + y**2 < 0.25:
             points_in_circle += 1
-            x_points["circle"].append(x)
-            y_points["circle"].append(y)
+            circle["x"].append(x)
+            circle["y"].append(y)
         else:
-            x_points["square"].append(x)
-            y_points["square"].append(y)
+            square["x"].append(x)
+            square["y"].append(y)
 
         i += 1
 
@@ -131,12 +134,8 @@ def calculate_pi(n):
     )
 
     plot.plot(
-        x_points["circle"], 
-        y_points["circle"], 
-        'rx', 
-        x_points["square"], 
-        y_points["square"], 
-        'bx'
+        circle["x"], circle["y"], 'rx', 
+        square["x"], square["y"], 'bx'
     )
     
     plot.ylabel("y")
