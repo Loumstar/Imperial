@@ -49,7 +49,7 @@ def return_cids(score):
 best_text.write("\n".join(return_cids(largest_mark)))
 best_text.close()
 
-print(find_score(4597))
+print(find_score(5194))
 
 print("--- Task C")
 
@@ -117,4 +117,4 @@ def approximate_reciprocal_one_minus_x(x, q):
     true_y = 1 / (1 - x)
     print("Approximation: %f, Error: %f for %i elements in the series" % (y, abs(true_y - y), n+1))
 
-approximate_reciprocal_one_minus_x(0.5, 6)
+approximate_reciprocal_one_minus_x(0.5, 8)
