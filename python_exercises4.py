@@ -107,12 +107,10 @@ def approximate_reciprocal_one_minus_x(x, q):
     y = 1
     while not accurate:
         n += 1
-        new_y = y + (x ** n)
-
-        if abs(new_y - y) < 0.1 ** q:
+        if abs(x ** n) < 0.1 ** q:
             accurate = True
         else:
-            y = new_y
+            y += (x ** n)
 
     true_y = 1 / (1 - x)
     print("Approximation: %f, Error: %f for %i elements in the series" % (y, abs(true_y - y), n+1))
