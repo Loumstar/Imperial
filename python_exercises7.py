@@ -56,21 +56,16 @@ with open("./exercise7/MatA.txt", 'r') as f:
 with open("./exercise7/MatB.txt", 'r') as f:
     mat_b_lst = [int(x) for x in re.findall('\d+', f.read())]
 
-def read_matrices(lst, n, m):
-    matrices = []
+def read_matrix(lst, n, m):
     matrix = []
-    matrix_index = 0
-    list_length = len(lst)
-    while (matrix_index * m * n) < list_length:
-        for j in range(m):
-            i = (matrix_index * m * n) + (j * m)
-            matrix.append(lst[i:i+n])
-        matrices.append(matrix)
-        matrix_index += 1
-    return matrices
+    for j in range(m):
+        i = j * n
+        matrix.append(lst[i:i+n])
+    return matrix
 
-mat_a = read_matrices(mat_a_lst, 60, 60)[0]
-mat_b = read_matrices(mat_b_lst, 60, 60)[0]
+
+mat_a = read_matrix(mat_a_lst, 60, 60)
+mat_b = read_matrix(mat_b_lst, 60, 60)
 
 print(mat_b[25][36])
 
