@@ -79,7 +79,6 @@ def find_piece(m, val):
 
 def check_adjacent_cells(m, val):
     c = find_piece(m, val)
-    
     s = 0
     enemies = []
     for row in range(c[0], c[0]+2):
