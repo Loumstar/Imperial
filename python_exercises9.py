@@ -1,12 +1,33 @@
 from matplotlib import pyplot as plot
 
+def arr_max(arr):
+    m = None
+    for x in arr:
+        if x > m or m == None:
+            m = x
+    return m
+
+def arr_min(arr):
+    m = None
+    for x in arr:
+        if x < m or m == None:
+            m = x
+    return m
+
+def arr_sum(arr):
+    s = 0
+    for x in arr:
+        if x > s or s == None:
+            s += x
+    return s
+
 print("--- Task A")
 
 def trace(m):
-    sum = 0
+    s = 0
     for i in range(len(m)):
-        sum += m[i][i]
-    return sum
+        s += m[i][i]
+    return s
 
 print("--- Task B")
 
@@ -18,7 +39,7 @@ def mat_product(a, b):
     for j in range(m):
         row = []
         for i in range(n):
-            row.append(sum(list(
+            row.append(arr_sum(list(
                 map(lambda x, y: x*y[i], a[j], b)
             )))
         c.append(row)
@@ -48,11 +69,11 @@ def temperature_analysis(t):
     max_t, min_t = None, None
     while(i < len(t)):
         t_daily = t[i:i+24]
-        if max(t_daily) > max_t or max_t == None:
-            max_t = max(t_daily)
-        elif min(t_daily) < min_t or min_t == None:
-            min_t = min(t_daily)
-        t_avg.append(sum(t_daily)/24)
+        if arr_max(t_daily) > max_t or max_t == None:
+            max_t = arr_max(t_daily)
+        elif arr_min(t_daily) < min_t or min_t == None:
+            min_t = arr_min(t_daily)
+        t_avg.append(arr_sum(t_daily)/24)
         i += 24
     return t_avg, max_t, min_t
 
