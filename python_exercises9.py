@@ -32,7 +32,7 @@ def is_anagram(a, b):
             b.remove(char)
         else:
             return False
-    if len(b) == 0 :
+    if len(b) == 0:
         return True
     else:
         return False
