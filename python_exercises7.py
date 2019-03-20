@@ -11,7 +11,14 @@ def nth_fibonacci(n):
         a, b = b, fib(a, b)
     return a
 
-print(nth_fibonacci(22))
+def recursive_fibonacci(n):
+    if n < 2:
+        return 1
+    else:
+        return recursive_fibonacci(n-1) + recursive_fibonacci(n-2)
+
+print(recursive_fibonacci(4))
+#print(nth_fibonacci(22))
 
 print("--- Task B")
 
