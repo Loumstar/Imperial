@@ -42,18 +42,13 @@ class Ant:
         new_x = self.ant_position[0] + dx
         new_y = self.ant_position[1] + dy
         
-        if (new_x ** 2) + (new_y ** 2) > (self.radius ** 2):
-            self.ant['x'].append(self.ant_position[0])
-            self.ant['y'].append(self.ant_position[1])
-            
-            return self.ant_position[0], self.ant_position[1]
-        
-        self.ant['x'].append(new_x)
-        self.ant['y'].append(new_y)
+        if not (new_x ** 2) + (new_y ** 2) > (self.radius ** 2):
+            self.ant['x'].append(new_x)
+            self.ant['y'].append(new_y)
 
-        self.ant_position = (new_x, new_y)
+            self.ant_position = (new_x, new_y)
 
-        return new_x, new_y
+        return self.ant_position
 
     def simulate(self, n):
         if self.ant_position != (None, None) and self.boundary != {'x': [], 'y': []}:
