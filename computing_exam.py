@@ -60,11 +60,18 @@ a = [
     [1, 2, 3, 4],
     [4, 5, 6, 7],
     [8, 9, 8, 7],
-    [11, 10, 9, 8]
 ]
 
-# Question 2
+b = [
+    [1],
+    [2],
+    [3],
+    [4]
+]
 
+print(matrix_product(a, b))
+
+# Question 2
 def create_brick(lb, ub, length):
     """
     Method to create a data point random between bounds that form a square.
@@ -127,7 +134,7 @@ def find_shooting_angles(brick_coords, length):
     angle that will allow the brick to be hit.
     """
     #theta is larger when x is smaller, therefore max theta is
-    # the angle from the origin to the closest end of the brick, 
+    #the angle from the origin to the closest end of the brick, 
     #with respect to its height
 
     #min theta is the opposite, the angle from origin to the furthest
@@ -158,10 +165,9 @@ def Brick(lb, ub, length):
     )
     plot.show()
 
-Brick((0, 0), (2, 2), 0.2)
+#Brick((0, 0), (2, 2), 0.2)
 
 # Question 3
-
 with open("./exam/FTSE100.txt", "r") as f:
     #create a list for each line
     ftse100_l = f.read().split("\n")
@@ -224,4 +230,4 @@ def LSE(ftse):
     #return sorted list and ftse value as a tuple
     return companies_sorted, ftse_value
 
-print(LSE(ftse100_l))
+#print(LSE(ftse100_l))
