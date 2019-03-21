@@ -39,7 +39,7 @@ def chess_board(n):
 
 def write_chess_board_to_txt(n):
     f = open('./exercise8/chess_board.txt', 'w')
-    f.write("11\n11\n")
+    f.write("%d\n%d\n" % (n, n))
     m = chess_board(n)
     for i in m:
         for ij in i:
