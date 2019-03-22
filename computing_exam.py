@@ -6,7 +6,7 @@ from matplotlib import pyplot as plot
 def matrix_product(a, b):
     """
     Method to determine the multiplcation of two matrices a and b.
-    If the matrices are not compantible, None is returned.
+    If the matrices are not compatible, None is returned.
     If they are compatible, each element in row a is multiplied by 
     the element at that index in column b. These are summed to give 
     the value of the element of the end-result matrix c, at that 
@@ -60,6 +60,7 @@ a = [
     [1, 2, 3, 4],
     [4, 5, 6, 7],
     [8, 9, 8, 7],
+    [10, 11, 12, 1]
 ]
 
 b = [
@@ -70,6 +71,8 @@ b = [
 ]
 
 print(matrix_product(a, b))
+
+print(multiply_matrix_by_transpose(a))
 
 # Question 2
 def create_brick(lb, ub, length):
@@ -230,4 +233,4 @@ def LSE(ftse):
     #return sorted list and ftse value as a tuple
     return companies_sorted, ftse_value
 
-print(LSE(ftse100_list))
+LSE(ftse100_list)
