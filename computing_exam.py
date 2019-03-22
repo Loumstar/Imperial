@@ -102,7 +102,7 @@ def draw_brick(brick_coords, length):
     """
     #line data points starts as a tuple of empty lists for x and y coords
     line = ([], [])
-    for i in range(10):
+    for i in range(11):
         #add ten data points equidistant along the length of the brick
         #note brick coord located at the centre of the brick
         line[0].append(brick_coords[0] + (i * length / 10) - (length / 2))
@@ -165,12 +165,12 @@ def Brick(lb, ub, length):
     )
     plot.show()
 
-#Brick((0, 0), (2, 2), 0.2)
+Brick((0, 0), (2, 2), 0.2)
 
 # Question 3
 with open("./exam/FTSE100.txt", "r") as f:
     #create a list for each line
-    ftse100_l = f.read().split("\n")
+    ftse100_list = f.read().split("\n")
 
 def companies(ftse):
     """
@@ -230,4 +230,4 @@ def LSE(ftse):
     #return sorted list and ftse value as a tuple
     return companies_sorted, ftse_value
 
-#print(LSE(ftse100_l))
+print(LSE(ftse100_list))
