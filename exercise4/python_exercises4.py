@@ -3,10 +3,10 @@ from re import compile, findall
 
 print("--- Task A")
 
-with open('./exercise4/CIDs.txt', 'r') as f:
+with open('./CIDs.txt', 'r') as f:
     cid_text = f.read()
 
-with open('./exercise4/Marks.txt', 'r') as f:
+with open('./Marks.txt', 'r') as f:
     marks_text = f.read()
 
 cid_regex = marks_regex = compile('(\d+)\s+')
@@ -33,7 +33,7 @@ print("--- Task B")
 def find_score(cid):
     return marks_list[cids_list.index(cid)]
 
-best_text = open('./exercise4/Best.txt', 'w+')
+best_text = open('./Best.txt', 'w+')
 
 def return_cids(score):
     i = 0

@@ -53,7 +53,7 @@ def sort_ascending(l):
     
     return sorted_list
 
-with open('./exercise6/Set.txt') as f:
+with open('./Set.txt') as f:
     blackboard_numbers = [int(x) for x in re.findall('\d+', f.read())]
 
 sorted_bb_numbers = sort_ascending(blackboard_numbers)

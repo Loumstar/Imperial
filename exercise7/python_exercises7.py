@@ -57,10 +57,10 @@ def create_flag(n):
 
 print("--- Task D")
 
-with open("./exercise7/MatA.txt", 'r') as f:
+with open("./MatA.txt", 'r') as f:
     mat_a_lst = [int(x) for x in re.findall('\d+', f.read())]
 
-with open("./exercise7/MatB.txt", 'r') as f:
+with open("./MatB.txt", 'r') as f:
     mat_b_lst = [int(x) for x in re.findall('\d+', f.read())]
 
 def read_matrix(lst, n, m):

@@ -15,12 +15,12 @@ def matrix_vector_dot(m, v):
         c.append(sum(list(map(lambda x, y: x * y, r, v))))
     return c
 
-with open("./exercise8/Q1A.txt", "r") as f:
+with open("./Q1A.txt", "r") as f:
     q1a_list = [int(x) for x in f.read().split("\n")]
 
 q1a_matrix = read_matrix(q1a_list, 400, 200)
 
-with open("./exercise8/Q1B.txt", "r") as f:
+with open("./Q1B.txt", "r") as f:
     q1b_list = [int(x) for x in f.read().split("\n")]
     
 q1b_vector = read_matrix(q1b_list, 400, 1)[0]
@@ -38,7 +38,7 @@ def chess_board(n):
     return board
 
 def write_chess_board_to_txt(n):
-    f = open('./exercise8/chess_board.txt', 'w')
+    f = open('./chess_board.txt', 'w')
     f.write("%d\n%d\n" % (n, n))
     m = chess_board(n)
     for i in m:
@@ -50,22 +50,22 @@ write_chess_board_to_txt(11)
 
 print("--- Task C")
 
-with open('./exercise8/Game1.txt', 'r') as f:
+with open('./Game1.txt', 'r') as f:
     list_g1 = [int(x) for x in f.read().split("\n")][2:]
 
 g1 = read_matrix(list_g1, 8, 8)
 
-with open('./exercise8/Game2.txt', 'r') as f:
+with open('./Game2.txt', 'r') as f:
     list_g2 = [int(x) for x in f.read().split("\n")][2:]
 
 g2 = read_matrix(list_g2, 8, 8)
 
-with open('./exercise8/Game3.txt', 'r') as f:
+with open('./Game3.txt', 'r') as f:
     list_g3 = [int(x) for x in f.read().split("\n")][2:]
 
 g3 = read_matrix(list_g3, 8, 8)
 
-with open('./exercise8/ChessA.txt', 'r') as f:
+with open('./ChessA.txt', 'r') as f:
     list_q2 = [int(x) for x in f.read().split("\n")][2:]
 
 q2 = read_matrix(list_q2, 8, 8)
@@ -110,7 +110,7 @@ def transpose(m):
         r.append(list(map(lambda x: x[j], m)))
     return r
 
-with open('./exercise8/Trans.txt', 'r') as f:
+with open('./Trans.txt', 'r') as f:
     t_list = [int(x) for x in f.read().split("\n")][2:]
 
 t = transpose(read_matrix(t_list, 402, 245))

@@ -171,7 +171,7 @@ def Brick(lb, ub, length):
 Brick((0, 0), (2, 2), 0.2)
 
 # Question 3
-with open("./exam/FTSE100.txt", "r") as f:
+with open("./FTSE100.txt", "r") as f:
     #create a list for each line
     ftse100_list = f.read().split("\n")
 

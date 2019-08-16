@@ -1,12 +1,12 @@
 from matplotlib import pyplot as plot
 
-with open('./exercise5/Groups.txt') as f:
+with open('./Groups.txt') as f:
     groups = f.read().split('\n')
 
-with open('./exercise5/Marks.txt') as f:
+with open('./Marks.txt') as f:
     marks = [int(a) for a in f.read().split('\n')]
 
-with open('./exercise5/Names.txt') as f:
+with open('./Names.txt') as f:
     names = f.read().split('\n')
 
 if not len(groups) == len(marks) == len(names):

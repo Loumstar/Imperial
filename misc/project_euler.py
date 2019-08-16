@@ -30,11 +30,11 @@ def new_lattice_paths(n, m):
     Second version of the script, which still uses recursion
     but skips a few steps to increase its speed
     """
-    largest_dim = n if n > m else m
-    smallest_dim = m if m > n else n
+    large_dimension = n if n > m else m
+    small_dimension = m if m > n else n
     
-    s = sum_paths(largest_dim, smallest_dim)
-    s += largest_dim - smallest_dim
+    s = sum_paths(large_dimension, small_dimension)
+    s += large_dimension - small_dimension
     
     return s
 
@@ -86,15 +86,15 @@ def binomial_lattice_paths(n, m):
     However, this value already exists in pascals triangle as binomial(n+k, k+1), 
     which is what this script finds for each value of k. These values are summed and then returned.
 
-    The number of extra paths due to the lattice being retangular is equal to the difference in the dimensions.
+    The number of extra paths due to the lattice being retangular is equal to the difference in the dimensions
+    multiplied by the smaller.
     """    
-    largest_dim = n if n > m else m
-    smallest_dim = m if m > n else n
-    s, k = 0, 0
-    while k <= smallest_dim:
-        s += binomial(smallest_dim + k - 1, k)
-        k += 1
-    s += largest_dim - smallest_dim
+    large_dimension = n if n > m else m
+    small_dimension = m if m > n else n
+    s = 0
+    for k in range(small_dimension + 1):
+        s += binomial(small_dimension + k - 1, k)
+    s += (large_dimension - small_dimension) * small_dimension
     return s
 
 def fact(a):
