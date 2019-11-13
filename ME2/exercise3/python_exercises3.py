@@ -61,20 +61,20 @@ def scalar_gradient(fnc, x, y, z, wrt, h):
 
     return (p1 - p0) / h
 
-def sum_differentials(vector, x_range, y_range, z_range, h):
+def sum_differentials(fnc, x_range, y_range, z_range, h):
     sum_array = []
     for z in z_range:
         row = []
         for y in y_range:
             column = []
             for x in x_range:
-                diff_sum = scalar_gradient(vector, x, y, z, 'x', h) + \
-                           scalar_gradient(vector, x, y, z, 'y', h) + \
-                           scalar_gradient(vector, x, y, z, 'z', h)
+                diff_sum = \
+                    scalar_gradient(fnc, x, y, z, 'x', h) + \
+                    scalar_gradient(fnc, x, y, z, 'y', h) + \
+                    scalar_gradient(fnc, x, y, z, 'z', h)
+                
                 column.append(diff_sum)
-
             row.append(column)
-
         sum_array.append(row)
 
     return sum_array
@@ -87,15 +87,10 @@ def f1(x, y, z):
     return (3 * (x ** 2)) + (math.e ** y) + (z * y)
 
 def v1(x, y, z):
-    i = 6 * x
-    j = (math.e ** y) + z
-    k = y
+    return 6 * x, z + (math.e ** y), y
 
-    return i, j, k
-
-f1_sum_differentials = sum_differentials(f1, x_range, y_range, z_range, h)
-
-grad_f1_curl_distribution = get_curl_distribution(v1, x_range, y_range, z_range, h)
+f1_diff_sum = sum_differentials(f1, x_range, y_range, z_range, h)
+v1_curl_dist = get_curl_distribution(v1, x_range, y_range, z_range, h)
 
 # Task B
 
@@ -119,11 +114,12 @@ def satisfies_laplace(fnc, x_range, y_range, z_range, h1, h2):
             for x in x_range:
                 if round(laplacian(fnc, x, y, z, h1, h2), 5) != 0:
                     return False
+                
     return True
 
 does_f2_satisfy_laplace = satisfies_laplace(f2, x_range, y_range, [0], 0.001, 0.1)
 
-print("f2 satisfies the Laplacian: %s" % (does_f2_satisfy_laplace))
+print("f2 satisfies the Laplacian: %s." % (does_f2_satisfy_laplace))
 
 # Task C
 
