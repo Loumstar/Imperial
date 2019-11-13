@@ -40,18 +40,18 @@ plot.imsave('parrots_copy.jpg', parrots_image_no_green_mirrored_small)
 
 # Task B
 
-def mv_derivative(fnc, x, y, z, wrt, h):
+def vector_gradient(vector, x, y, z, wrt, h):
     derivative = [0, 0, 0]
     
     if h:
         if wrt == 'x':
-            p1 = fnc(x + h, y, z)
+            p1 = vector(x + h, y, z)
         elif wrt == 'y':
-            p1 = fnc(x, y + h, z)
+            p1 = vector(x, y + h, z)
         elif wrt == 'z':
-            p1 = fnc(x, y, z + h)
+            p1 = vector(x, y, z + h)
 
-        p0 = fnc(x, y, z)
+        p0 = vector(x, y, z)
 
         for d in (0, 1, 2):
             derivative[d] = (p1[d] - p0[d]) / h
@@ -60,9 +60,9 @@ def mv_derivative(fnc, x, y, z, wrt, h):
 
 
 def div(vector, x, y, z, h):
-    i = mv_derivative(vector, x, y, z, 'x', h)[0]
-    j = mv_derivative(vector, x, y, z, 'y', h)[1]
-    k = mv_derivative(vector, x, y, z, 'z', h)[2]
+    i = vector_gradient(vector, x, y, z, 'x', h)[0]
+    j = vector_gradient(vector, x, y, z, 'y', h)[1]
+    k = vector_gradient(vector, x, y, z, 'z', h)[2]
     
     print(i, j, k)
 
@@ -82,9 +82,9 @@ def get_div_distribution(vector, x_range, y_range, z_range, h):
     return scalar_field_array
 
 def curl(vector, x, y, z, h):
-    i = mv_derivative(vector, x, y, z, 'y', h)[2] - mv_derivative(vector, x, y, z, 'z', h)[1]
-    j = mv_derivative(vector, x, y, z, 'z', h)[0] - mv_derivative(vector, x, y, z, 'x', h)[2]
-    k = mv_derivative(vector, x, y, z, 'x', h)[1] - mv_derivative(vector, x, y, z, 'y', h)[0]
+    i = vector_gradient(vector, x, y, z, 'y', h)[2] - vector_gradient(vector, x, y, z, 'z', h)[1]
+    j = vector_gradient(vector, x, y, z, 'z', h)[0] - vector_gradient(vector, x, y, z, 'x', h)[2]
+    k = vector_gradient(vector, x, y, z, 'x', h)[1] - vector_gradient(vector, x, y, z, 'y', h)[0]
 
     return (round(i, 5), round(j, 5), round(k, 5))
 
@@ -101,13 +101,13 @@ def get_curl_distribution(vector, x_range, y_range, z_range, h):
 
     return vector_field_array
 
-def f1(x, y, z):
+def vector1(x, y, z):
     return (x, y, 0)
 
-def f2(x, y, z):
+def vector2(x, y, z):
     return (y, -x, 0)
 
-def f3(x, y, z):
+def vector3(x, y, z):
     i = y / ((x ** 2) + (y ** 2))
     j = -x / ((x ** 2) + (y ** 2))
     k = 0
@@ -117,11 +117,11 @@ x_range = numpy.arange(-5, 5, 0.1)
 y_range = numpy.arange(-5, 5, 0.1)
 z_range = [0]
 
-#print(div(f3, 0.1, 0.2, 0, 0.0001))
+#print(div(vector3, 0.1, 0.2, 0, 0.0001))
 
 """
-div_values = numpy.array(get_div_distribution(f3, x_range, y_range, z_range, 0.001)[0])
-curl_values = numpy.array(get_curl_distribution(f3, x_range, y_range, z_range, 0.001)[0])
+div_values = numpy.array(get_div_distribution(vector3, x_range, y_range, z_range, 0.001)[0])
+curl_values = numpy.array(get_curl_distribution(vector3, x_range, y_range, z_range, 0.001)[0])
 
 fig = plot.figure()
 
