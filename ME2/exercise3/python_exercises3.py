@@ -89,12 +89,13 @@ def f1(x, y, z):
 def v1(x, y, z):
     return 6 * x, z + (math.e ** y), y
 
-f1_diff_sum = sum_differentials(f1, x_range, y_range, z_range, h)
-v1_curl_dist = get_curl_distribution(v1, x_range, y_range, z_range, h)
+#f1_diff_sum = sum_differentials(f1, x_range, y_range, z_range, h)
+#v1_curl_dist = get_curl_distribution(v1, x_range, y_range, z_range, h)
 
 # Task B
 
 def laplacian(fnc, x, y, z, h1, h2):
+    # Where h1 << h2
     f_x0 = scalar_gradient(fnc, x, y, z, 'x', h1)
     f_y0 = scalar_gradient(fnc, x, y, z, 'y', h1)
     f_z0 = scalar_gradient(fnc, x, y, z, 'z', h1)
@@ -117,9 +118,9 @@ def satisfies_laplace(fnc, x_range, y_range, z_range, h1, h2):
                 
     return True
 
-does_f2_satisfy_laplace = satisfies_laplace(f2, x_range, y_range, [0], 0.001, 0.1)
+#does_f2_satisfy_laplace = satisfies_laplace(f2, x_range, y_range, [0], 0.001, 0.1)
 
-print("f2 satisfies the Laplacian: %s." % (does_f2_satisfy_laplace))
+#print("f2 satisfies the Laplacian: %s." % (does_f2_satisfy_laplace))
 
 # Task C
 
@@ -152,42 +153,36 @@ def t1(x, y, z, n):
 x_range = numpy.arange(0, 2, 0.1)
 y_range = numpy.arange(0, 4, 0.1)
 z_range = tuple([0])
-
 N = 105
 
-cartesian_temp_dist = get_temperature_distribution(t1, x_range, y_range, z_range, N)
-caretesian_temp_values = numpy.array(cartesian_temp_dist[0]) # Remove z-axis from distribution and convert to numpy array
+x_axis, y_axis = numpy.meshgrid(x_range, y_range)
+
+caretesian_temp_array = numpy.array(get_temperature_distribution(t1, x_range, y_range, z_range, N)[0])
 
 fig = plot.figure()
 
 temperature_plot = fig.add_subplot(111, projection='3d')
-x_axis, y_axis = numpy.meshgrid(x_range, y_range)
-
-temperature_plot.plot_surface(x_axis, y_axis, caretesian_temp_values)
-
+temperature_plot.plot_surface(x_axis, y_axis, caretesian_temp_array)
 temperature_plot.axis((0, 2, 0, 4))
-
-plot.show()
-plot.clf()
 
 # Task D
 
 def to_polar(x, y):
     r = math.hypot(x, y)
-    theta = math.pi / 2 if x == 0 else math.atan(y / x) 
+    theta = math.atan2(y, x)
 
     return r, theta
 
 # T = 1 and a = 1
 def t2(r, theta, z, n):
-    m = (2 * n) + 1 # N must be odd
+    m = (2 * n) + 1
 
     coefficient = 4 / (math.pi * m)
 
     r_function = r ** m
     theta_function = math.sin(m * theta)
 
-    return coefficient * r_function * theta_function
+    return coefficient * r_function * theta_function if r <= 1 else 0
 
 def cartesian_t2(x, y, z, n):
     r, theta = to_polar(x, y)
@@ -196,19 +191,16 @@ def cartesian_t2(x, y, z, n):
 x_range = numpy.arange(-1, 1, 0.01)
 y_range = numpy.arange(0, 1, 0.01)
 z_range = tuple([0])
-
 N = 45
 
-polar_temp_dist = get_temperature_distribution(cartesian_t2, x_range, y_range, z_range, N)
-polar_temp_values = numpy.array(polar_temp_dist[0])
-
 x_axis, y_axis = numpy.meshgrid(x_range, y_range)
+
+polar_temp_array = numpy.array(get_temperature_distribution(cartesian_t2, x_range, y_range, z_range, N)[0])
 
 fig = plot.figure()
 
 temperature_plot = fig.add_subplot(111, projection='3d')
-temperature_plot.plot_surface(x_axis, y_axis, polar_temp_values)
-
+temperature_plot.plot_surface(x_axis, y_axis, polar_temp_array)
 temperature_plot.axis((-1, 1, 0, 1))
 
 plot.show()
