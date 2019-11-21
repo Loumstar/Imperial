@@ -89,8 +89,8 @@ def f1(x, y, z):
 def v1(x, y, z):
     return 6 * x, z + (math.e ** y), y
 
-#f1_diff_sum = sum_differentials(f1, x_range, y_range, z_range, h)
-#v1_curl_dist = get_curl_distribution(v1, x_range, y_range, z_range, h)
+f1_diff_sum = sum_differentials(f1, x_range, y_range, z_range, h)
+v1_curl_dist = get_curl_distribution(v1, x_range, y_range, z_range, h)
 
 # Task B
 
@@ -118,9 +118,9 @@ def satisfies_laplace(fnc, x_range, y_range, z_range, h1, h2):
                 
     return True
 
-#does_f2_satisfy_laplace = satisfies_laplace(f2, x_range, y_range, [0], 0.001, 0.1)
+does_f2_satisfy_laplace = satisfies_laplace(f2, x_range, y_range, [0], 0.001, 0.1)
 
-#print("f2 satisfies the Laplacian: %s." % (does_f2_satisfy_laplace))
+print("f2 satisfies the Laplacian: %s." % (does_f2_satisfy_laplace))
 
 # Task C
 
@@ -153,6 +153,7 @@ def t1(x, y, z, n):
 x_range = numpy.arange(0, 2, 0.1)
 y_range = numpy.arange(0, 4, 0.1)
 z_range = tuple([0])
+
 N = 105
 
 x_axis, y_axis = numpy.meshgrid(x_range, y_range)
@@ -191,6 +192,7 @@ def cartesian_t2(x, y, z, n):
 x_range = numpy.arange(-1, 1, 0.01)
 y_range = numpy.arange(0, 1, 0.01)
 z_range = tuple([0])
+
 N = 45
 
 x_axis, y_axis = numpy.meshgrid(x_range, y_range)
