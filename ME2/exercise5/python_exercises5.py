@@ -20,15 +20,15 @@ def ndd(i, nodes):
     else:
         differences = []
         previous = ndd(i - 1, nodes)
-        
+
         for j in range(len(previous) - 1):
             differences.append((previous[j + 1] - previous[j]) / (nodes[i + j][0] - nodes[j][0]))
-    
+
         return differences
 
 def newtonian_polynomial(x, nodes):
     summation = 0
-    
+
     for i, _ in enumerate(nodes):
         polynomial = 1
         for j in range(i):
