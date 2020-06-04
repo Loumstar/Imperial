@@ -28,7 +28,7 @@ def next_amplitude_1d(u, i, p, cfl):
     of a point i along a string (1D) given that p > 1:
 
     u(i,p) = (2u(i,p-1) - u(i,p-2))
-        + cfl^2 (u(i-1,p-1) - 2(i,p-1) - u(i+1,p-1))
+        + cfl^2 (u(i-1,p-1) - 2u(i,p-1) - u(i+1,p-1))
     """
     finite_diff_time = (2 * u[p - 1][i]) - u[p - 2][i]
     finite_diff_x = u[p - 1][i - 1] - (2 * u[p - 1][i]) + u[p - 1][i + 1]
@@ -90,7 +90,7 @@ def get_string_oscillation(length_string, t_end, u0, v0, bc, c, nx, nt):
     
     return u
 
-def find_bounds(i, bc, nx):
+def find_bounds(i, bc):
     """
     Method to find which boundary conditions the grid point i falls between.
     The method returns a lower bound and upper bound as grid points, in a tuple.
@@ -126,7 +126,7 @@ def velocity_from_bow(a, c, length, bc, nx, bow_location=0):
     velocities = []
     
     for i in range(nx):
-        lb, ub = find_bounds(i, bc, nx)
+        lb, ub = find_bounds(i, bc)
         if lb <= bow_gp and bow_gp <= ub: # if bow falls within these bounds
             ratio = (ub - i) / float(ub - bow_gp) if i >= bow_gp \
                else (i - lb) / float(bow_gp - lb)
@@ -161,9 +161,9 @@ def next_amplitude_2d(a, i, j, p, cfl):
     Explicit finite difference method for calculating the amplitude
     of a point i,j in air (2D) given that p > 1:
 
-    u(i,p) = (2u(i,j,p-1) - u(i,j,p-2))
-        + cfl^2 (u(i-1,j,p-1) - 2(i,j,p-1) - u(i+1,j,p-1))
-        + cfl^2 (u(i,j-1,p-1) - 2(i,j,p-1) - u(i,j+1,p-1))
+    u(i,j,p) = (2u(i,j,p-1) - u(i,j,p-2))
+        + cfl^2 (u(i-1,j,p-1) - 2u(i,j,p-1) - u(i+1,j,p-1))
+        + cfl^2 (u(i,j-1,p-1) - 2u(i,j,p-1) - u(i,j+1,p-1))
     """
     finite_diff_time = (2 * a[p - 1][j][i]) - a[p - 2][j][i]
     finite_diff_x = a[p - 1][j][i - 1] - (2 * a[p - 1][j][i]) + a[p - 1][j][i + 1]

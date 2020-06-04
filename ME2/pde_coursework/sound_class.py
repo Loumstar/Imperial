@@ -198,7 +198,7 @@ class StringSoundPropagation:
             if y > 0 and y < self.dy:
                 return True, self.string.u[p][xgp]
         
-        return False, 0.0
+        return False, m.nan
 
     def __pressure_frame(self, p):
         frame = []
