@@ -562,7 +562,7 @@ def jacobi_next_iteration(fnc, x, y, nx, dx):
     
     for n in range(1, nx - 1):
         f, g, h = fnc(x[n])
-        new_y[n] = jacobi_approximation(new_y[n - 1], new_y[n + 1], f, g, h, dx)
+        new_y[n] = jacobi_approximation(y[n - 1], y[n + 1], f, g, h, dx)
     
     return new_y
 

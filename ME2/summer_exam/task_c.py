@@ -1,5 +1,3 @@
-# Task C
-
 import math, numpy
 from matplotlib import pyplot as plot
 

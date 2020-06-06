@@ -1,12 +1,5 @@
 from matplotlib import pyplot as plot
 
-banksy_filename = "Banksy.jpg"
-
-# Read and show image
-banksy_image = plot.imread(banksy_filename).copy()
-plot.imshow(banksy_image)
-plot.show()
-
 def create_blue_red_triangles(image):
     """
     Method to filter an image such that the upper triangle only has blue colour and the
@@ -32,6 +25,17 @@ def create_blue_red_triangles(image):
                 triangle_image[j][i][2] = 0 # set blue to 0
 
     return triangle_image
+
+"""
+Main Script
+"""
+
+banksy_filename = "Banksy.jpg"
+
+# Read and show image
+banksy_image = plot.imread(banksy_filename).copy()
+plot.imshow(banksy_image)
+plot.show()
 
 # Save the new image
 plot.imsave('Tactics.jpg', create_blue_red_triangles(banksy_image))

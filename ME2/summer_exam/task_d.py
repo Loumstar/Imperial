@@ -11,6 +11,12 @@ def integrate_numerically(fnc, x_lb, x_ub, h):
     
     return integral_sum
 
+"""
+Main Script
+"""
+
+cid_values = [0, 1, 3, 6, 0, 4, 5, 8]
+
 def green_region_function(x, n):
     """
     Method that descibes the vertical height in the green region as a function of x
@@ -20,11 +26,6 @@ def green_region_function(x, n):
 
     return circle_height - red_function
 
-"""
-Main Script
-"""
-
-cid_values = [0, 1, 3, 6, 0, 4, 5, 8]
 integral_values = []
 
 for n in cid_values:
